@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ZeroHunger.EF.Collection>
+
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>History</h2>
+
+
+<table class="table">
+    <tr>
+        <th> Food Name
+           
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+           Expires In 
+        </th>
+        <th>
+           Employee Name
+        </th>
+        <th>
+            Restaurent Name
+        </th>
+        <th>
+           Order Time
+        </th>
+        <th>
+           Status
+        </th>
+       
+     
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.food_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expire) Days
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.res_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ordertime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        
+        
+       
+    </tr>
+}
+
+</table>

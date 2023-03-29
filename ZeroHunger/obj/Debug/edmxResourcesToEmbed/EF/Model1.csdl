@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZeroHungerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Collection">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="food_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="expire" Type="Int32" />
+    <Property Name="emp_id" Type="Int32" />
+    <Property Name="emp_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="res_id" Type="Int32" />
+    <Property Name="res_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ordertime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee" Relationship="ZeroHungerModel.FK_Collections_Employees" FromRole="Collection" ToRole="Employee" />
+    <NavigationProperty Name="Restaurent" Relationship="ZeroHungerModel.FK_Collections_Restaurents" FromRole="Collection" ToRole="Restaurent" />
+  </EntityType>
+  <EntityContainer Name="ZeroHungerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Collections" EntityType="Self.Collection" />
+    <EntitySet Name="Employees" EntityType="ZeroHungerModel.Employee" />
+    <EntitySet Name="Restaurents" EntityType="ZeroHungerModel.Restaurent" />
+    <EntitySet Name="Users" EntityType="ZeroHungerModel.User" />
+    <AssociationSet Name="FK_Collections_Employees" Association="ZeroHungerModel.FK_Collections_Employees">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Collection" EntitySet="Collections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Collections_Restaurents" Association="ZeroHungerModel.FK_Collections_Restaurents">
+      <End Role="Restaurent" EntitySet="Restaurents" />
+      <End Role="Collection" EntitySet="Collections" />
+    </AssociationSet>
+    <EntitySet Name="Admins" EntityType="ZeroHungerModel.Admin" />
+  </EntityContainer>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Collections" Relationship="ZeroHungerModel.FK_Collections_Employees" FromRole="Employee" ToRole="Collection" />
+  </EntityType>
+  <EntityType Name="Restaurent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="food" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="expiredate" Type="Int32" />
+    <NavigationProperty Name="Collections" Relationship="ZeroHungerModel.FK_Collections_Restaurents" FromRole="Restaurent" ToRole="Collection" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Collections_Employees">
+    <End Type="ZeroHungerModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="ZeroHungerModel.Collection" Role="Collection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Collection">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Collections_Restaurents">
+    <End Type="ZeroHungerModel.Restaurent" Role="Restaurent" Multiplicity="0..1" />
+    <End Type="ZeroHungerModel.Collection" Role="Collection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Collection">
+        <PropertyRef Name="res_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

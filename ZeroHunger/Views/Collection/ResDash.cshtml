@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ZeroHunger.EF.Restaurent>
+
+@{
+    ViewBag.Title = "ResDash";
+    Layout = "~/Views/Shared/View.cshtml";
+}
+
+<style>
+    /* CSS changes */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 16px;
+        color: #333;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        padding: 10px;
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 20px;
+    }
+
+        .btn:hover {
+            background-color: #3e8e41;
+        }
+</style>
+
+<h2>ResDash</h2>
+
+<p>
+    <a href="/Collection/Create/" class="btn btn-success">Create Request</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.name)</th>
+            <th>@Html.DisplayNameFor(model => model.food)</th>
+            <th>@Html.DisplayNameFor(model => model.quantity)</th>
+            <th>@Html.DisplayNameFor(model => model.expiredate)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.name)</td>
+                <td>@Html.DisplayFor(modelItem => item.food)</td>
+                <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.expiredate)</td>
+            </tr>
+        }
+    </tbody>
+</table>

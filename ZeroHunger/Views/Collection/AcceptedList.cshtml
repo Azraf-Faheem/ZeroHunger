@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ZeroHunger.EF.Collection>
+
+@{
+    ViewBag.Title = "AcceptedList";
+}
+
+<h2>AcceptedList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.food_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.expire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.res_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ordertime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restaurent.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.food_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.res_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ordertime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restaurent.name)
+        </td>
+        <td>
+            <a href="/Collection/Assign/@item.res_id">Assign</a>
+            
+        </td>
+    </tr>
+}
+
+</table>

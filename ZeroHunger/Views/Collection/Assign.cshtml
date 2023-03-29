@@ -1,0 +1,90 @@
+﻿@model  ZeroHunger.EF.Collection
+
+@{
+    ViewBag.Title = "Assign";
+}
+
+<h2>Assign</h2>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Item</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+
+        label {
+            margin-top: 10px;
+            display: inline-block;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <label for="id">Restaurent ID:</label>
+        <input type="text" name="res_id" value="@Model.res_id" readonly />
+
+        <label for="name">Restaurent Name:</label>
+        <input type="text" name="res_name" value="@Model.res_name" readonly />
+
+        <label for="cid">Food Name</label>
+        <input type="text" name="food_name" value="@Model.food_name" readonly />
+
+        <label for="price">Quantity:</label>
+        <input type="text" name="quantity" value="@Model.quantity" readonly />
+
+        <label for="price">Expires in (Days):</label>
+        <input type="text" name="expire" value="@Model.expire" readonly />
+
+        <label for="emp_id">Employee Id:</label>
+        <input type="text" name="emp_id" value="@Model.emp_id" required />
+
+
+        <input type="submit" value="Deliver">
+    </form>
+</body>
+</html>
+
+
+
